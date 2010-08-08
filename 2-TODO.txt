@@ -1,10 +1,11 @@
 #===============================================================================
 # Code Jock..: Patrick Nelson
-# Version....: 0.1.4
-# Revision...: 2010-211
+# Version....: 0.1.5
+# Revision...: 2010-220
 #-------------------------------------------------------------------------------
 # ToDo list for sm code project
 #===============================================================================
+ -cnfcm -clean up all code using netbeans analyzer
  -cnfcm -add record locking mechanism to all doUpdate() doSave() calls
 X-cnfcm -add record locking mechanism to SetLateRFC
 X-cnfcm -added DPadRFCNum to output of GetLateRFC -> 4
