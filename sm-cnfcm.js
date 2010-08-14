@@ -1,8 +1,8 @@
 //=============================================================================
 // Name     : CNF ChM Functions
 // CodeJock : Patrick Nelson (nelson.patrick@con-way.com)
-// Version  : 0.2.5.a1
-// Revision : 2010-220
+// Version  : 0.2.5.a2
+// Revision : 2010-225
 //=============================================================================
 
 //-----------------------------------------------
@@ -352,7 +352,6 @@ function GetImpact(cRFC){
     if(bShow) {print("-> no AGs in RFC AL");}
   }
 //#######################################################################################################################
-  
   print("impact analysis -> SOX check ->"+bSOX);
   bSOX = system.library.cnfcm.GetCISOX();
   if(bShow) {
@@ -711,7 +710,7 @@ var oA=DArg({acRFC:0,acSA:false},aoObj);if(oA.acSA){SArg(oA);}
 //---------------------------------------------------------------------------------
 // RETURNS the RFC correctly de-padded
 //---------------------------------------------------------------------------------
-  var sDPad;var sRFC;var bZeros=true;
+  var sRFC;var bZeros=true;
   if(oA.acRFC.toString().substr(0,2)!="CM"){return oA.acRFC;}
   sRFC = oA.acRFC.toString().substr(2,7);
   while(bZeros){if(sRFC.substr(0,1)=="0"){sRFC=sRFC.substr(1);} else {bZeros=false;}}
@@ -755,7 +754,7 @@ var oA=DArg({anTop:"all",anBot:0,anGD:3,abUp:true,anShw:1,anWait:0,abSA:false},a
 //---------------------------------------------------------------------------------
 // Checks for and sets the value of the days an RFC is late
 //---------------------------------------------------------------------------------
-  var i;var nI;var nMIAD=86400000;var nCnt=0;var cUpSay;var UpShw;var nPreLate;var cUpNot=(oA.abUp) ? "":" <- #NOT#";
+  var i;var nI;var nMIAD=86400000;var nCnt=0;var cUpSay;var nPreLate;var cUpNot=(oA.abUp) ? "":" <- #NOT#";
   var aList=[];var fRFC=new SCFile("cm3r");var dLate=new Date();var nGetShw=(oA.anShw>2) ? 2:oA.anShw;var rRC;var bUpLk;
   aList = GetLateRFC({anTop:oA.anTop,anBot:oA.anBot,anGD:oA.anGD,abRA:true,anShw:nGetShw,abSA:oA.abSA});
   for(i in aList) {
@@ -766,7 +765,7 @@ var oA=DArg({anTop:"all",anBot:0,anGD:3,abUp:true,anShw:1,anWait:0,abSA:false},a
       if(nLate>oA.anGD && nPreLate!=nLate) {
         fRFC.cnf_planned_days=nLate.toString();
         if(oA.abUp && !GetRFCLock({acRFC:fRFC.number})){rRC=fRFC.doUpdate();}
-        if(rRC==RC_SUCCESS){nCnt+=1;cUpSay="UPDATED";cUpShw=" > ";}else{cUpSay="not updated - LOCKED";cUpShw=" # ";}
+        if(rRC==RC_SUCCESS){nCnt+=1;cUpSay="UPDATED";cUpShw=" < ";}else{cUpSay="not updated - LOCKED";cUpShw=" # ";}
         bUpLk = true;
       }
       if((oA.anShw>=1 && bUpLk) || oA.anShw>=2){print(fRFC.number+" - "+fRFC.current_phase+" - "+nPreLate+cUpShw+nLate+"  <-- "+cUpSay);}
