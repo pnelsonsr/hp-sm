@@ -1,9 +1,9 @@
 #===============================================================================
 # Code Jock..: Patrick Nelson
-# Version....: 0.1.4
-# Revision...: 2010-211
+# Version....: 0.1.1
+# Revision...: 2010-202
 #-------------------------------------------------------------------------------
-# ToDo list for sm code project
+# TODO for sm-code project
 #===============================================================================
  -cnfcm -add record locking mechanism to all doUpdate() doSave() calls
 X-cnfcm -add record locking mechanism to SetLateRFC
